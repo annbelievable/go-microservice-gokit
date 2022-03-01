@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+service ContactService {
+    rpc GetOrganisationContacts(OrganisationContactRequest) returns (ContactResponse);
+}
+
+message OrganisationContactRequest {
+    uint32 OrganisationId = 1;
+}
+
+message ContactResponse {
+    message Contact {
+        uint32 Id = 1;
+        string Email = 2;
+        uint32 Organisation = 3;
+    }
+    repeated Contact Contacts = 1;
+}
