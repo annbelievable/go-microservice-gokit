@@ -2,6 +2,7 @@ package transport
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/annbelievable/go-microservice-gokit/endpoint"
 	"github.com/annbelievable/go-microservice-gokit/proto"
@@ -37,6 +38,11 @@ func decodeOrganisationContactsRequest(_ context.Context, request interface{}) (
 }
 
 func encodeContactsResponse(_ context.Context, response interface{}) (interface{}, error) {
-	resp := response.(*proto.ContactResponse_Contact)
-	return resp, nil
+	resp := response.(endpoint.ContactResponse)
+
+	var result proto.ContactResponse
+	tmp, _ := json.Marshal(resp)
+	json.Unmarshal(tmp, result)
+
+	return &result, nil
 }

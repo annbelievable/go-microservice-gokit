@@ -14,6 +14,7 @@ import (
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -41,6 +42,7 @@ func main() {
 
 	go func() {
 		baseServer := grpc.NewServer()
+		reflection.Register(baseServer)
 		proto.RegisterContactServiceServer(baseServer, grpcServer)
 		level.Info(logger).Log("msg", "Server started.")
 		baseServer.Serve(grpcListener)
