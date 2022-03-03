@@ -42,7 +42,7 @@ func encodeContactsResponse(_ context.Context, response interface{}) (interface{
 
 	var result proto.ContactResponse
 	tmp, _ := json.Marshal(resp)
-	json.Unmarshal(tmp, result)
+	json.Unmarshal(tmp, &result)
 
 	return &result, nil
 }

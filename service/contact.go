@@ -22,6 +22,7 @@ func NewContactService(logger log.Logger) ContactService {
 
 func (s contactService) GetOrganisationContacts(ctx context.Context, organisationId uint32) ([]*Contact, error) {
 	//i will have to filter through the contacts and get the one that matches the organisation id
+	// s.logger.Log("organisation id", organisationId)
 	return contactList, nil
 }
 
